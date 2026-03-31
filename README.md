@@ -4,13 +4,32 @@ MATLAB implementations of feedback control design studies based on the design st
 
 This repository collects simulation, modeling, and controller-design scripts for six systems used in introductory feedback-control study:
 
-- **A_arm** - single link robot arm
-- **B_pendulum** - pendulum on a cart
-- **C_satellite** - satellite attitude control
-- **D_mass** - mass-spring-damper
-- **E_ballbeam** - ball-on-beam
-- **F_vtol** - planar VTOL
+## A_arm
+Single link robot arm
 
-The code is organized around chapter-style scripts for simulation models, linearization, transfer functions, and controller design.
+![Single link robot arm](images/arm.png)
 
----
+## B_pendulum
+Pendulum on a cart
+
+![Pendulum on a cart](images/pendulum.png)
+
+## C_satellite
+Satellite attitude control
+
+![Satellite attitude control](images/satellite.png)
+
+## D_mass
+Mass-spring-damper
+
+![Mass-spring-damper](images/mass.png)
+
+## E_ballbeam
+Ball-on-beam
+
+![Ball-on-beam](images/ballbeam.png)
+
+## F_vtol
+Planar VTOL
+
+![Planar VTOL](images/vtol.png)
