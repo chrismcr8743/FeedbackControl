@@ -19,6 +19,7 @@ P.thetadot0 = 0.0;         % rad/s
 % Simulation parameters
 P.t_start = 0.0;
 P.t_end   = 20.0;
+% P.Ts      = 0.01;
 P.Ts      = 0.01;
 P.t_plot  = 0.05;
 

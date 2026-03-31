@@ -13,7 +13,6 @@ classdef ch08_vtolPD < handle
         kp_z
         kd_z
 
-        % options
         use_rotor_saturation
         tr_h
         tr_th
@@ -25,15 +24,6 @@ classdef ch08_vtolPD < handle
 
     methods
         function self = ch08_vtolPD(mode, tr_h_override, tr_z_override)
-            % mode:
-            %   'a' -> altitude design
-            %   'e' -> nominal Chapter 8 design
-            %   'f' -> same controller structure, but with rotor saturation on
-            %
-            % optional overrides:
-            %   tr_h_override -> altitude rise time
-            %   tr_z_override -> lateral outer-loop rise time
-
             if nargin < 1
                 mode = 'e';
             end
@@ -44,7 +34,6 @@ classdef ch08_vtolPD < handle
             self.zeta_th = 0.707;
             self.zeta_z  = 0.707;
 
-            % nominal Chapter 8 values
             % self.tr_h  = 1.150;
             % self.tr_th = 0.8;
             % self.tr_z  = 3.12;
@@ -57,15 +46,12 @@ classdef ch08_vtolPD < handle
 
             switch lower(mode)
                 case 'a'
-                    % altitude only design
                     self.use_rotor_saturation = false;
 
                 case 'e'
-                    % nominal
                     self.use_rotor_saturation = false;
 
                 case 'f'
-                    % same controller, but rotor saturation enabled
                     self.use_rotor_saturation = true;
 
                 otherwise
@@ -122,7 +108,6 @@ classdef ch08_vtolPD < handle
         end
 
         function u = update(self, z_r, h_r, state)
-            % state = [z; h; theta; zdot; hdot; thetadot]
             z = state(1);
             h = state(2);
             theta = state(3);
@@ -144,11 +129,8 @@ classdef ch08_vtolPD < handle
             %----------------------------------------------------------
             theta_r = self.kp_z * (z_r - z) - self.kd_z * zdot;
             tau = self.kp_th * (theta_r - theta) - self.kd_th * thetadot;
-
-            % convert [F; tau] to rotor forces [fr; fl]
             u = P.mixing * [F; tau];
 
-            % rotor saturation for F.8(f)
             if self.use_rotor_saturation
                 u(1) = saturateRotor(u(1), P.F_max);
                 u(2) = saturateRotor(u(2), P.F_max);

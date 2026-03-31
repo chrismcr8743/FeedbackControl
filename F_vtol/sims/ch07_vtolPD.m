@@ -8,20 +8,17 @@ classdef ch07_vtolPD < handle
     methods
         function self = ch07_vtolPD()
             P = vtolParams();
-
-            % total mass
             m = P.mc + P.mr + P.ml;
 
-            % desired poles at -0.2 and -0.3
+            % desired poles
             p1 = -0.2;
             p2 = -0.3;
 
             % desired characteristic polynomial
-            % (s-p1)(s-p2) = s^2 - (p1+p2)s + p1*p2
-            alpha1 = -(p1 + p2);   % 0.5
-            alpha0 = p1 * p2;      % 0.06
+            alpha1 = -(p1 + p2);   
+            alpha0 = p1 * p2;  
 
-            % longitudinal plant: h_tilde_ddot = (1/m) F_tilde
+            % longitudinal plant
             self.kd = m * alpha1;
             self.kp = m * alpha0;
 
@@ -34,7 +31,6 @@ classdef ch07_vtolPD < handle
         end
 
         function F = update(self, h_r, state)
-            % state = [z; h; theta; zdot; hdot; thetadot]
             h = state(2);
             hdot = state(5);
 

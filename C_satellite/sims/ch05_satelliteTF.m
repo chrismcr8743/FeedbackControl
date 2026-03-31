@@ -19,7 +19,7 @@ H = simplify(C * ((s*I - A_lin) \ B_lin) + D);
 disp('H(s) symbolic =')
 pretty(H)
 
-% Substitute numerical values from satelliteParams
+% Substitute numerical values 
 Pnum = satelliteParams();
 H_num = simplify(subs(H, ...
     {Js, Jp, k, b}, ...
@@ -29,7 +29,6 @@ disp(' ')
 disp('H(s) with numeric parameters =')
 pretty(H_num)
 
-% Monic form for each transfer function entry
 for i = 1:length(H_num)
     Hi = simplify(H_num(i));
 

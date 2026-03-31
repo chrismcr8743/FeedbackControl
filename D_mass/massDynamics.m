@@ -5,7 +5,6 @@ classdef massDynamics < handle
         k
         b
         Ts
-        force_limit
     end
 
     methods
@@ -16,21 +15,18 @@ classdef massDynamics < handle
 
             P = massParams();
 
-            % Initial state: [z; zdot]
+            % state = [z; zdot]
             self.state = [P.z0; P.zdot0];
 
-            % Randomized parameters
+            % uncertainty
             self.m = P.m * (1 + alpha*(2*rand - 1));
             self.k = P.k * (1 + alpha*(2*rand - 1));
             self.b = P.b * (1 + alpha*(2*rand - 1));
 
-            % Sample time and saturation
             self.Ts = P.Ts;
-            self.force_limit = P.F_max;
         end
 
         function y = update(self, u)
-            u = saturate(u, self.force_limit);
             self.rk4_step(u);
             y = self.h();
         end
@@ -40,7 +36,7 @@ classdef massDynamics < handle
             zdot = state(2);
             F = u;
 
-            zddot = (F - self.b*zdot - self.k*z) / self.m;
+            zddot = (F - self.b*zdot - self.k*z)/self.m;
 
             xdot = [zdot; zddot];
         end
@@ -58,10 +54,4 @@ classdef massDynamics < handle
             self.state = self.state + self.Ts/6*(F1 + 2*F2 + 2*F3 + F4);
         end
     end
-end
-
-function u = saturate(u, limit)
-if abs(u) > limit
-    u = limit * sign(u);
-end
 end

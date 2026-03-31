@@ -1,6 +1,3 @@
-% Animation of the ball on beam system. 
-%   - Inputs: z, theta.
-
 clc;
 close all;
 clear;
@@ -11,9 +8,8 @@ animation = ballbeamAnimation();
 
 t = P.t_start;
 while t < P.t_end
-    % Example animation inputs
-    z = 0.25 + 0.15*sin(2*pi*0.05*t);          % m
-    theta = (10*pi/180)*sin(2*pi*0.10*t);      % rad
+    z = 0.25 + 0.15*sin(2*pi*0.05*t);     
+    theta = (10*pi/180)*sin(2*pi*0.10*t);   
 
     state = [z; theta; 0; 0];
     animation.update(state);

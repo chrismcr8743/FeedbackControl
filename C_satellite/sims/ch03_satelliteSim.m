@@ -3,21 +3,12 @@ clc;
 close all;
 clear;
 
-this_dir = fileparts(mfilename('fullpath'));   % .../C_satellite/sims
-sat_dir  = fileparts(this_dir);                % .../C_satellite
-root_dir = fileparts(sat_dir);                 % project root
-
-addpath(sat_dir);
-addpath(fullfile(root_dir, 'tools'));
-
 P = satelliteParams();
 
-% instantiate satellite and input generators
 satellite = satelliteDynamics();
 reference = signalGenerator('amplitude', 0.5, 'frequency', 0.1);
 torque = signalGenerator('amplitude', 0.1, 'frequency', 0.1);
 
-% instantiate plots and animation
 dataPlot = satelliteDataPlotter();
 animation = satelliteAnimation();
 
@@ -28,7 +19,7 @@ while t < P.t_end
     while t < t_next_plot
         r = 0;
         u = torque.sin(t);
-        y = satellite.update(u); %#ok<NASGU>
+        y = satellite.update(u); 
         t = t + P.Ts;
     end
 

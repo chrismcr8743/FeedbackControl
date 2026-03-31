@@ -2,19 +2,15 @@ clc;
 close all;
 clear;
 
-% load parameters
 P = pendulumParams();
-
-% instantiate pendulum and controller
 pendulum = pendulumDynamics(0.0);
 controller = ch08_pendulumPD();
 
 pendulum.state(2) = 10.0*pi/180.0;   % initial pendulum angle
-sim_t_end = 10.0;                              % simulate for 10 seconds
+sim_t_end = 10.0;                              
 r = 0.0;                                               % zero cart position reference
 d = 0.0;                                               % zero disturbance
 
-% instantiate plots and animation
 dataPlot = pendulumDataPlotter();
 animation = pendulumAnimation();
 

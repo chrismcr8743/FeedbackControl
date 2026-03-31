@@ -2,20 +2,14 @@ clc;
 close all;
 clear;
 
-% mode = 'a'; % part (a): tr = 2 s, zeta = 0.7, no saturation
-mode = 'b'; % part (b): saturation on, tune tr for fastest non-saturating response
+% mode = 'a'; % tr = 2 s, zeta = 0.7, no saturation
+mode = 'b'; % saturation on, tune tr for fastest non saturating response
 
-% Load parameters
 P = massParams();
-
-% Instantiate plant and controller
 mass = massDynamics(0.0);
 controller = ch08_massPD(mode);
-
-% Step input
 reference = signalGenerator('amplitude', 1.0, 'frequency', 0.0);
 
-% Instantiate plots and animation
 dataPlot = massDataPlotter();
 animation = massAnimation();
 
@@ -41,7 +35,7 @@ while t < P.t_end
     pause(0.0001);
 end
 
-fprintf('Maximum commanded force magnitude = %f N\n', u_max);
+fprintf('u_max = %f N\n', u_max);
 
 disp('Press any key to close');
 waitforbuttonpress;

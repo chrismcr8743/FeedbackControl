@@ -18,7 +18,7 @@ H = simplify(C * ((s*I - A_lin) \ B_lin) + D);
 disp('H(s) symbolic =')
 pretty(H)
 
-% Numeric substitution using vtolParams
+% Numeric substitution 
 vtol_dir = fileparts(this_dir);
 addpath(vtol_dir);
 
@@ -32,7 +32,6 @@ disp(' ')
 disp('H(s) with numeric parameters =')
 pretty(H_num)
 
-% Monic form for each entry
 [nr, nc] = size(H_num);
 for r = 1:nr
     for c = 1:nc

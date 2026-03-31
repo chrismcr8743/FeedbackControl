@@ -1,5 +1,3 @@
-% MSD with a variable force input.
-
 clc;
 close all;
 clear;

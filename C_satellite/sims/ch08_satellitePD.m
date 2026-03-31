@@ -10,8 +10,6 @@ classdef ch08_satellitePD < handle
 
     methods
         function self = ch08_satellitePD(mode)
-            % mode = 'f' for book nominal design
-            % mode = 'g' for tuned saturated design
             if nargin < 1
                 mode = 'f';
             end
@@ -24,11 +22,9 @@ classdef ch08_satellitePD < handle
 
             switch lower(mode)
                 case 'f'
-                    % Book part (b),(c),(d),(f)
                     tr_th = 1.0;
                     self.use_tau_saturation = false;
                 case 'g'
-                    % Tuned for fastest response without torque saturation
                     tr_th = 1.75;
                     self.use_tau_saturation = true;
                 otherwise
@@ -75,17 +71,16 @@ classdef ch08_satellitePD < handle
         end
 
         function tau = update(self, phi_r, state)
-            % state = [theta; phi; thetadot; phidot]
             theta = state(1);
             phi = state(2);
             thetadot = state(3);
             phidot = state(4);
 
-            % Outer loop -> desired body angle
+            % outer loop: desired body angle
             theta_r = self.kp_phi*(phi_r - phi) - self.kd_phi*phidot + phi_r;
             theta_r = saturate(theta_r, self.theta_max);
 
-            % Inner loop -> body torque
+            % inner loop: body torque
             P = satelliteParams();
             tau = self.kp_th*(theta_r - theta) - self.kd_th*thetadot;
 
