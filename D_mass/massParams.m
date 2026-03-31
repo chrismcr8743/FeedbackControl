@@ -21,4 +21,15 @@ P.t_plot  = 0.1;
 
 % Saturation limit
 P.F_max = 6.0;  % N
+
+P.A = [0, 1;
+      -P.k/P.m, -P.b/P.m];
+
+P.B = [0;
+       1/P.m];
+
+P.C = [1, 0];
+
+P.D = 0;
+
 end

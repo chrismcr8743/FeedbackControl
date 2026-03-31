@@ -19,16 +19,38 @@ P.thetadot0 = 0.0;         % rad/s
 % Simulation parameters
 P.t_start = 0.0;
 P.t_end   = 20.0;
-<<<<<<< HEAD
 % P.Ts      = 0.01;
-=======
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 P.Ts      = 0.01;
 P.t_plot  = 0.05;
 
 % Saturation limit 
 P.F_max = 15.0;            % N
 
+% equilibrium point for linear design
 P.ze = P.length/2;
-P.Fe = P.g*(P.m1*P.ze + P.m2*P.length/2)/P.length;
+P.thetae = 0.0;
+
+% equilibrium force at ze
+P.Fe = (P.m1*P.g*P.ze + P.m2*P.g*P.length/2) / P.length;
+
+% linearized state-space model from E.6
+% x_tilde = [z_tilde; theta_tilde; zdot_tilde; thetadot_tilde]
+Je = P.m1*P.ze^2 + P.m2*P.length^2/3;
+
+P.A = [0,            0, 1, 0;
+          0,            0, 0, 1;
+          0,         -P.g, 0, 0;
+         -P.m1*P.g/Je, 0, 0, 0];
+
+P.B = [0;
+          0;
+          0;
+          P.length/Je];
+
+P.C = [1, 0, 0, 0;
+          0, 1, 0, 0];
+
+P.D = [0;
+          0];
+
 end

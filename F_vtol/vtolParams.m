@@ -31,15 +31,39 @@ P.t_plot  = 0.05;
 % Per-rotor saturation, used later in the VTOL homework sequence
 P.F_max = 10.0;    % N
 
-% Useful derived quantities
+% mixing / unmixing matrices
+% [F; tau] = [1 1; d -d] * [fr; fl]
+P.unmixing = [1.0, 1.0;
+                      P.d, -P.d];
+P.mixing = inv(P.unmixing);
+
+% equilibrium quantities
 P.m = P.mc + P.mr + P.ml;
 P.J = P.Jc + (P.mr + P.ml)*P.d^2;
 P.Fe = P.m * P.g;
 
-% mixing / unmixing matrices
-% [F; tau] = [1 1; d -d] * [fr; fl]
-P.unmixing = [1.0, 1.0;
-              P.d, -P.d];
-P.mixing = inv(P.unmixing);
+% longitudinal state space model 
+% x_lon = [h_tilde; hdot_tilde], u_lon = F_tilde, y_lon = h_tilde
+P.A_lon = [0, 1;
+                 0, 0];
+P.B_lon = [0;
+                 1/P.m];
+P.C_lon = [1, 0];
+P.D_lon = 0;
 
+% lateral state space model 
+% x_lat = [z_tilde; theta_tilde; zdot_tilde; thetadot_tilde]
+% u_lat = tau_tilde, y_lat = [z_tilde; theta_tilde]
+P.A_lat = [0, 0, 1, 0;
+                0, 0, 0, 1;
+                0, -P.g, -P.mu/P.m, 0;
+                0, 0, 0, 0];
+P.B_lat = [0;
+                0;
+                0;
+                1/P.J];
+P.C_lat = [1, 0, 0, 0;
+                0, 1, 0, 0];
+P.D_lat = [0;
+                0];
 end

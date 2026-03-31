@@ -2,11 +2,7 @@
 this_dir = fileparts(mfilename('fullpath'));
 run(fullfile(this_dir, 'ch06_massLin.m'));
 
-<<<<<<< HEAD
 % laplace variable
-=======
-% Laplace variable
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 syms s
 I = sym(eye(size(A_lin, 1)));
 
@@ -31,10 +27,6 @@ disp(' ')
 disp('H(s) with numeric parameters =')
 pretty(H_num)
 
-<<<<<<< HEAD
-=======
-% monic form
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 [num, den] = numden(H_num);
 expanded_den = expand(den);
 

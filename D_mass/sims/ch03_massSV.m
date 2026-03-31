@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 % Symbolic state variable form for the msd system
-=======
-%% ch03_massSV
-% Symbolic state-variable form for the mass-spring-damper system
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 
 this_dir = fileparts(mfilename('fullpath'));
 run(fullfile(this_dir, 'ch02_massKE.m'));
@@ -28,11 +23,7 @@ q = z;
 qdot = zdot;
 qddot = zddot;
 
-<<<<<<< HEAD
 % euler lagrange eqn
-=======
-% Euler-Lagrange equation
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 dLdqdot = diff(L, qdot);
 d_dt_dLdqdot = diff(dLdqdot, z) * zdot + diff(dLdqdot, zdot) * zddot;
 dLdq = diff(L, q);

@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-%% ch06_pendulumLin
-% MATLAB version of hw06_pendulum_linearization.py
-
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 this_dir = fileparts(mfilename('fullpath'));
 run(fullfile(this_dir, 'ch03_pendulumSV.m'));
 

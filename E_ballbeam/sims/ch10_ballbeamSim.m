@@ -6,8 +6,7 @@ P = ballbeamParams();
 ballbeam = ballbeamDynamics(0.2);
 controller = ch10_ballbeamPID();
 reference = signalGenerator('amplitude', 0.15, 'frequency', 0.0, 'y_offset', 0.25);
-dataPlot = ballbeamDataPlotter();
-animation = ballbeamAnimation();
+visualizer = ballbeamVisualizer();
 
 t = P.t_start;
 y = ballbeam.h();
@@ -31,8 +30,7 @@ while t < sim_t_end
         r_hist(end+1) = r;
     end
 
-    animation.update(ballbeam.state);
-    dataPlot.update(t, ballbeam.state, u, r);
+    visualizer.update(t, ballbeam.state, u, r);
     pause(0.0001);
 end
 

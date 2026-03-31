@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-%% ch03_pendulumSV
-% MATLAB version of hw03_pendulum_solving_for_state_variable_form.py
-
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 this_dir = fileparts(mfilename('fullpath'));
 run(fullfile(this_dir, 'ch02_pendulumKE.m'));
 
@@ -44,11 +38,7 @@ RHS = [F - b*zd;
 
 full_eom = simplify(EL_case_studyB - RHS);
 
-<<<<<<< HEAD
 % solve for highest order derivatives
-=======
-% solve for highest-order derivatives
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 sol = solve(full_eom == 0, [zdd, thetadd]);
 
 zdd_eom = simplify(sol.zdd);

@@ -1,4 +1,3 @@
-%% ch11_satelliteSim
 clc;
 close all;
 clear;
@@ -9,8 +8,7 @@ satellite = satelliteDynamics();
 controller = ch11_satelliteSF();
 reference = signalGenerator('amplitude', 15.0*pi/180.0, 'frequency', 0.04);
 
-dataPlot = satelliteDataPlotter();
-animation = satelliteAnimation();
+visualizer = satelliteVisualizer();
 
 t = P.t_start;
 y = satellite.h(); 
@@ -26,8 +24,7 @@ while t < P.t_end
         t = t + P.Ts;
     end
 
-    animation.update(satellite.state);
-    dataPlot.update(t, satellite.state, u, r);
+    visualizer.update(t, satellite.state, u, r);
     pause(0.0001);
 end
 

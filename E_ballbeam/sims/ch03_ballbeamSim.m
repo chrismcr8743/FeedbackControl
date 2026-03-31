@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-% Ballbeam dynamics with a variable force input
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 clc;
 close all;
 clear;
@@ -18,11 +14,7 @@ while t < P.t_end
 
     while t < t_next_plot
         u = force.sin(t);
-<<<<<<< HEAD
         y = ballbeam.update(u); 
-=======
-        y = ballbeam.update(u); %#ok<NASGU>
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
         t = t + P.Ts;
     end
 

@@ -16,28 +16,13 @@ classdef ch08_pendulumPD < handle
     methods
         function self = ch08_pendulumPD()
             P = pendulumParams();
-<<<<<<< HEAD
-=======
-
-            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            %       PD Control: Time Design Strategy
-            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-            % tuning parameters
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
             tr_th = 0.15;      % rise time for inner loop (theta)
             zeta_th = 0.707;   % inner loop damping coefficient
 
             % saturation limits
-<<<<<<< HEAD
             self.F_max = 5.0;         % max force
             error_max = 1;            % max step size
             theta_max = 30.0*pi/180;  % max theta
-=======
-            self.F_max = 5.0;         % max force, N
-            error_max = 1;            %#ok<NASGU> % max step size, m
-            theta_max = 30.0*pi/180;  %#ok<NASGU> % max theta, rad
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 
             %---------------------------------------------------
             %                    Inner Loop
@@ -71,11 +56,7 @@ classdef ch08_pendulumPD < handle
             fprintf('kd_z: %f\n', self.kd_z);
 
             %---------------------------------------------------
-<<<<<<< HEAD
             %                zero canceling filter
-=======
-            %                zero-canceling filter
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
             %---------------------------------------------------
             self.filter_a = -3.0 / (2.0 * P.ell * DC_gain);
             self.filter_b = sqrt(3.0 * P.g / (2.0 * P.ell));
@@ -84,16 +65,11 @@ classdef ch08_pendulumPD < handle
         end
 
         function F_sat = update(self, z_r, state)
-<<<<<<< HEAD
-=======
-            % state = [z; theta; zdot; thetadot]
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
             z = state(1);
             theta = state(2);
             zdot = state(3);
             thetadot = state(4);
 
-<<<<<<< HEAD
             % outer loop PD
             tmp = self.kp_z * (z_r - z) - self.kd_z * zdot;
 
@@ -101,15 +77,6 @@ classdef ch08_pendulumPD < handle
             theta_r = self.filter_update(tmp);
 
             % inner loop PD
-=======
-            % outer-loop PD
-            tmp = self.kp_z * (z_r - z) - self.kd_z * zdot;
-
-            % zero-canceling filter using RK1 / forward Euler
-            theta_r = self.filter_update(tmp);
-
-            % inner-loop PD
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
             F = self.kp_th * (theta_r - theta) - self.kd_th * thetadot;
 
             % saturate

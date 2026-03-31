@@ -8,8 +8,7 @@ pendulum = pendulumDynamics();
 controller = ch11_pendulumSF();
 reference = signalGenerator('amplitude', 0.5, 'frequency', 0.04);
 
-dataPlot = pendulumDataPlotter();
-animation = pendulumAnimation();
+visualizer = pendulumVisualizer();
 
 t = P.t_start;
 y = pendulum.h(); 
@@ -25,8 +24,8 @@ while t < P.t_end
         t = t + P.Ts;
     end
 
-    animation.update(pendulum.state);
-    dataPlot.update(t, pendulum.state, u, r);
+    visualizer.update(t, pendulum.state, u, r);
+    
     pause(0.0001);
 end
 

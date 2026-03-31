@@ -8,9 +8,7 @@ arm = armDynamics(0.0);
 controller = ch11_armSF();
 reference = signalGenerator('amplitude', 30.0*pi/180.0, 'frequency', 0.05);
 
-
-dataPlot = armDataPlotter();
-animation = armAnimation();
+visualizer = armVisualizer();
 
 t = P.t_start;
 y = arm.h(); 
@@ -27,8 +25,7 @@ while t < P.t_end
         t = t + P.Ts;
     end
 
-    animation.update(arm.state);
-    dataPlot.update(t, arm.state, u, r);
+    visualizer.update(t, arm.state, u, r);
     pause(0.0001);
 end
 

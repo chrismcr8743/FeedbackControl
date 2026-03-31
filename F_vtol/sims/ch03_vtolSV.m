@@ -23,11 +23,7 @@ pretty(P)
 disp('Lagrangian L =')
 pretty(L)
 
-<<<<<<< HEAD
 % euler lagrange equations
-=======
-% Euler-Lagrange equations
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 dLdqdot = jacobian(L, qdot).';
 dLdq = jacobian(L, q).';
 d_dt_dLdqdot = jacobian(dLdqdot, [q; qdot]) * [qdot; qddot];
@@ -46,11 +42,7 @@ RHS = [ -F*sin(theta) - mu*zvdot + Fwind;
 
 full_eom = simplify(EL_case_studyF - RHS);
 
-<<<<<<< HEAD
 % Solve for highest order derivatives
-=======
-% Solve for highest-order derivatives
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 sol = solve(full_eom == 0, [zvddot, hddot, thetaddot]);
 
 zvddot_eom = simplify(sol.zvddot);
@@ -66,11 +58,7 @@ pretty(hddot_eom)
 disp('thetaddot equation =')
 pretty(thetaddot_eom)
 
-<<<<<<< HEAD
 % State variable form
-=======
-% State-variable form
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 state = [zv;
          h;
          theta;

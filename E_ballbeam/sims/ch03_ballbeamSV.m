@@ -22,11 +22,7 @@ q = [z; theta];
 qdot = [zdot; thetadot];
 qddot = [zddot; thetaddot];
 
-<<<<<<< HEAD
 % euler lagrange equations
-=======
-% Euler-Lagrange equations
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 dLdqdot = jacobian(L, qdot).';
 dLdq = jacobian(L, q).';
 d_dt_dLdqdot = jacobian(dLdqdot, [q; qdot]) * [qdot; qddot];
@@ -35,11 +31,7 @@ EL_case_studyE = simplify(d_dt_dLdqdot - dLdq);
 disp('Euler-Lagrange expression =')
 pretty(EL_case_studyE)
 
-<<<<<<< HEAD
 % generalized input
-=======
-% Generalized input
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 RHS = [0;
        F*ell*cos(theta)];
 
@@ -57,11 +49,7 @@ pretty(zddot_eom)
 disp('thetaddot equation =')
 pretty(thetaddot_eom)
 
-<<<<<<< HEAD
 % State variable form
-=======
-% State-variable form
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 state = [z;
          theta;
          zdot;
@@ -76,19 +64,3 @@ state_dot = [zdot;
 
 disp('State derivative xdot =')
 pretty(state_dot)
-<<<<<<< HEAD
-=======
-
-
-% beam_dir = fileparts(this_dir);
-% addpath(beam_dir);
-% 
-% Pnum = ballbeamParams();
-% eom = matlabFunction(state_dot, ...
-%     'Vars', {z, theta, zdot, thetadot, F, m1, m2, ell, g});
-% 
-% xdot_test = eom(Pnum.length/2, 0, 0, 0, 1, Pnum.m1, Pnum.m2, Pnum.length, Pnum.g);
-% 
-% disp('x_dot test at [ell/2 0 0 0], input 1 =')
-% disp(xdot_test)
->>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
