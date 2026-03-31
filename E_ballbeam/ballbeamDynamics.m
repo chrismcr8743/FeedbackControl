@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 % classdef ballbeamDynamics < handle
 %     properties
 %         state
@@ -77,6 +78,8 @@
 
 
 
+=======
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 classdef ballbeamDynamics < handle
     properties
         state
@@ -85,6 +88,10 @@ classdef ballbeamDynamics < handle
         ell
         g
         Ts
+<<<<<<< HEAD
+=======
+        force_limit
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
     end
 
     methods
@@ -95,6 +102,7 @@ classdef ballbeamDynamics < handle
 
             P = ballbeamParams();
 
+<<<<<<< HEAD
             % state = [z; theta; zdot; thetadot]
             self.state = [P.z0; P.theta0; P.zdot0; P.thetadot0];
 
@@ -108,6 +116,21 @@ classdef ballbeamDynamics < handle
         end
 
         function y = update(self, u)
+=======
+            self.state = [P.z0; P.theta0; P.zdot0; P.thetadot0];
+
+            self.m1 = P.m1 * (1 + alpha*(2*rand - 1));
+            self.m2 = P.m2 * (1 + alpha*(2*rand - 1));
+            self.ell = P.length * (1 + alpha*(2*rand - 1));
+            self.g = P.g;
+
+            self.Ts = P.Ts;
+            self.force_limit = P.F_max;
+        end
+
+        function y = update(self, u)
+            u = saturate(u, self.force_limit);
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
             self.rk4_step(u);
             y = self.h();
         end
@@ -128,6 +151,7 @@ classdef ballbeamDynamics < handle
                 - (self.m1*self.g*z + self.m2*self.g*self.ell/2.0)*cos(theta) ...
                 ) / denom;
 
+<<<<<<< HEAD
             xdot = [zdot;
                     thetadot;
                     zddot;
@@ -137,6 +161,13 @@ classdef ballbeamDynamics < handle
         function y = h(self)
             y = [self.state(1);
                  self.state(2)];
+=======
+            xdot = [zdot; thetadot; zddot; thetaddot];
+        end
+
+        function y = h(self)
+            y = [self.state(1); self.state(2)];
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
         end
 
         function rk4_step(self, u)
@@ -148,4 +179,13 @@ classdef ballbeamDynamics < handle
             self.state = self.state + self.Ts/6*(F1 + 2*F2 + 2*F3 + F4);
         end
     end
+<<<<<<< HEAD
+=======
+end
+
+function u = saturate(u, limit)
+if abs(u) > limit
+    u = limit * sign(u);
+end
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 end

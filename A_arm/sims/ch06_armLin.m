@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 this_dir = fileparts(mfilename('fullpath'));
 run(fullfile(this_dir, 'ch03_armSV.m'));
 
+=======
+%% ch06_armLin
+% MATLAB version of hw06_arm_linearization.py
+
+this_dir = fileparts(mfilename('fullpath'));
+run(fullfile(this_dir, 'ch03_armSV.m'));
+
+% Define derivative of states, states, and input symbolically
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 f = state_dot;
 x = state;
 uin = u;

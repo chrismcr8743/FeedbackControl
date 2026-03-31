@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+%% ch02_armKE
+% MATLAB version of hw02_arm_finding_KE.py
+% Uses ordinary symbolic variables instead of theta(t)
+
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 clearvars
 clc
 

@@ -29,6 +29,10 @@ pretty(A_jac)
 disp('B from Jacobian =')
 pretty(B_jac)
 
+<<<<<<< HEAD
+=======
+% Clean expected linearized model
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 m = mc + mr + ml;
 J = Jc + mr*d^2 + ml*d^2;
 

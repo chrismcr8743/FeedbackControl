@@ -10,6 +10,11 @@ classdef ch08_satellitePD < handle
 
     methods
         function self = ch08_satellitePD(mode)
+<<<<<<< HEAD
+=======
+            % mode = 'f' for book nominal design
+            % mode = 'g' for tuned saturated design
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
             if nargin < 1
                 mode = 'f';
             end
@@ -22,9 +27,17 @@ classdef ch08_satellitePD < handle
 
             switch lower(mode)
                 case 'f'
+<<<<<<< HEAD
                     tr_th = 1.0;
                     self.use_tau_saturation = false;
                 case 'g'
+=======
+                    % Book part (b),(c),(d),(f)
+                    tr_th = 1.0;
+                    self.use_tau_saturation = false;
+                case 'g'
+                    % Tuned for fastest response without torque saturation
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
                     tr_th = 1.75;
                     self.use_tau_saturation = true;
                 otherwise
@@ -71,16 +84,28 @@ classdef ch08_satellitePD < handle
         end
 
         function tau = update(self, phi_r, state)
+<<<<<<< HEAD
+=======
+            % state = [theta; phi; thetadot; phidot]
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
             theta = state(1);
             phi = state(2);
             thetadot = state(3);
             phidot = state(4);
 
+<<<<<<< HEAD
             % outer loop: desired body angle
             theta_r = self.kp_phi*(phi_r - phi) - self.kd_phi*phidot + phi_r;
             theta_r = saturate(theta_r, self.theta_max);
 
             % inner loop: body torque
+=======
+            % Outer loop -> desired body angle
+            theta_r = self.kp_phi*(phi_r - phi) - self.kd_phi*phidot + phi_r;
+            theta_r = saturate(theta_r, self.theta_max);
+
+            % Inner loop -> body torque
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
             P = satelliteParams();
             tau = self.kp_th*(theta_r - theta) - self.kd_th*thetadot;
 

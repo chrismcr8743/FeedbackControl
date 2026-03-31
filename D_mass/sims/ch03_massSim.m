@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+% MSD with a variable force input.
+
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 clc;
 close all;
 clear;

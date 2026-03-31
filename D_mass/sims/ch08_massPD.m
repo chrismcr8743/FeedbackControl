@@ -27,7 +27,11 @@ classdef ch08_massPD < handle
                     self.use_saturation = false;
 
                 case 'b'
+<<<<<<< HEAD
                     self.tr = 2.019;   
+=======
+                    self.tr = 2.019;   % chune
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
                     self.use_saturation = true;
 
                 otherwise
@@ -58,9 +62,17 @@ classdef ch08_massPD < handle
         end
 
         function F_cmd = update(self, z_r, state)
+<<<<<<< HEAD
             z = state(1);
             zdot = state(2);
 
+=======
+            % state = [z; zdot]
+            z = state(1);
+            zdot = state(2);
+
+            % PD + spring feedforward
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
             F = self.kp*(z_r - z) - self.kd*zdot + self.kr*z_r;
 
             if self.use_saturation

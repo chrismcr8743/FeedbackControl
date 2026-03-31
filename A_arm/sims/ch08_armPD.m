@@ -7,7 +7,14 @@ classdef ch08_armPD < handle
     methods
         function self = ch08_armPD()
             P = armParams();
+<<<<<<< HEAD
             tr = 0.37;    
+=======
+
+            % tuning parameters
+            % tr = 0.8;   % part (a)
+            tr = 0.37;    % tuned for faster rise time before saturation
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
             zeta = 0.707;
 
             % desired natural frequency

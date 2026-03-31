@@ -18,6 +18,10 @@ H = simplify(C * ((s*I - A_lin) \ B_lin) + D);
 disp('H(s) symbolic =')
 pretty(H)
 
+<<<<<<< HEAD
+=======
+% Numeric substitution at the usual design point ze = ell/2
+>>>>>>> bd8cd1f9744e740fe816fdff748360dcfde2e468
 beam_dir = fileparts(this_dir);
 addpath(beam_dir);
 
